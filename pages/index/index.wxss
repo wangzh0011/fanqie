@@ -1,0 +1,63 @@
+/* pages/index/index.wxss */
+@import "/utils/tabs.wxss";
+@import "/utils/mask.wxss";
+
+.background-img{
+    width: 100%; 
+    height: 100%; 
+    position: absolute;
+}
+
+.area{
+  position: absolute;
+  width: 90%;
+  height: 80%;
+  top:5%;
+  left: 5%;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.image{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 6%;
+}
+
+.person{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  margin-top: 20%;
+}
+
+.person_item{
+  display: flex;
+  flex-flow: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.item_text{
+  font-size: 28rpx;
+  color: #5a5f74;
+}
+
+.item_num{
+  font-size: 46rpx;
+  color: #2c2f3d;
+}
+
+.fanqieCoin{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 18%;
+}
+
+.fanqieCoin_text{
+  font-size: 30rpx;
+  color: #41d524;
+  text-decoration: underline;
+}

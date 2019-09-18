@@ -1,0 +1,134 @@
+.mask{
+    width:100%;
+    height:100%;
+    position:fixed;
+    background:rgba(0,0,0,0.5);
+    z-index:9999;
+    top:0;
+    left:0;
+}
+
+.fanqie{
+    position: absolute;
+    background-color: #ffffff;
+    width: 80%;
+    height: 65%;
+    border-radius: 12px;
+    top: 10%;
+    left: 10%;
+}
+
+.fanqie_close{
+    position: absolute;
+    top: 8%;
+    left: 83%;
+    width: 45px;
+    height: 45px;
+}
+
+.fanqie .image{
+    /* display: flex;
+    flex-flow: row column; */
+    /* position: absolute;  */
+    /* top: 8%; */
+    /* justify-content: center; */
+    margin-top: 8%
+}
+
+.fanqie .image .style1{
+    position: absolute; 
+    left: 13%; /* (100-(36+38))/2 */
+    width: 36%;
+    height: 24%;
+}
+
+.fanqie .image .style2{
+    position: absolute; 
+    left: 49%; /* 13+36 */
+    margin-top: 5%;
+    width: 38%;
+    height: 16%;
+}
+
+.fanqie .image .text{
+    position: absolute;
+    left: 61%;
+    margin-top: 8%;
+    width: 20%;
+    height: 10%;
+    /* font-size: 30rpx;
+    font-family: cursive; */
+}
+
+.fanqie .text{
+    font-weight: bold;
+    font-size: 36rpx;
+    margin-top: 48%;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+}
+
+.fanqie .text_bottom{
+    color: #26da40;
+    font-weight: bold;
+    font-size: 30rpx;
+    position: absolute;
+    left: 35%;
+    bottom: 5%;
+    width: 30%;
+}
+
+.fanqie .qccode{
+    position: absolute;
+    right: 5%;
+    width: 90px;
+    height: 90px;
+    bottom: 5%;
+}
+
+.fanqie_share{
+    position: absolute;
+    left: 10%;
+    top: 78%;
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center   
+}
+
+.fanqie_share .share_area{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0% 10% 0% 10%;
+}
+
+.share_text{
+    font-size: 30rpx;
+    /* font-weight: bold; */
+    color: #ffffff
+}
+
+.share_img{
+    width: 60px;
+    height: 60px
+}
+
+/*重置button样式*/
+button::after {
+    border: none
+}
+
+button{
+    background-color: transparent;/*透明*/
+    line-height: inherit
+}
+
+.button-hover{
+    color: transparent;
+    background-color: transparent
+}
+

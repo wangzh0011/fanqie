@@ -1,0 +1,99 @@
+<!--pages/index/index.wxml-->
+<view>
+	<image src="../images/ty11.png" class="background-img" >
+	</image>
+
+  <view class="area">
+    <view class="image">
+      <image src="../images/xty18.png" style="height: {{atbs_pic_style*4}}px; width: {{atbs_pic_style*4.3}}px"></image>
+    </view>
+
+    <view class="person">
+      <view class="person_item">
+        <view class="item_text">邀请人数</view>
+        <view class="item_num">5</view>
+      </view>
+      <view class="person_item">
+        <view class="item_text">观望人数</view>
+        <view class="item_num">100</view>
+      </view>
+    </view>
+
+    <view class="image">
+      <image src="../images/xty20.png" style="height: {{atbs_pic_style*3.5}}px; width: {{atbs_pic_style*4.3}}px"></image>
+    </view>
+
+    <view class="person_item">
+      <view class="item_text">
+        <text>我的番茄币</text>
+        <image src="../images/xty19.png" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px;"></image>
+      </view>
+      <view class="item_num">20</view>
+    </view>
+
+    <view class="fanqieCoin">
+      <view class="fanqieCoin_text">兑换番茄币</view>
+    </view>
+
+  </view>
+
+	<!--底部状态栏-->
+  <view class="tabs" style="height: {{windowHeight/12}}px">
+    <button class="tabs_item" >
+      <image src="../images/ty13.png" bindtap="" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px"/>
+      <text class="tabs_text">赚番茄</text>
+    </button>
+    <view class="tabs_item">
+    </view>
+    <button class="tabs_item" open-type="contact">
+      <image src="../images/ty7.png" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px"/>
+      <text class="tabs_text">客服</text>
+    </button>
+  </view>
+
+  <button class="share" loading="{{loading}}" disabled="{{disabled}}">
+    <image src="../images/xty16.png" style="height: {{atbs_pic_style*3}}px; width: {{atbs_pic_style*3}}px"/>
+  </button>
+
+
+
+	<!--健康番茄遮罩层-->
+	<view wx:if="{{showFanqie}}" class="mask">
+		<view class="fanqie">
+			<view class="image">
+				<image class="style1" src="../images/xty14.png" />
+				<image class="style2" src="../images/xty9.png" />
+				<!-- <view >要么瘦</view>
+				<view >要么死</view> -->
+				<image class="text" src="../images/xty15.png"/>
+			</view>
+			<view class="text">
+				<view style="font-size: 30rpx">众人皆胖 我独瘦</view>
+				<view >我将参与健康番茄</view>
+				<view >全民减脂计划</view>
+				<view >用我的科学减脂甩掉肉肉</view>
+				<view >再见了胖友们</view>
+			</view>
+			<view class="text_bottom">
+				<text >健康番茄</text>
+			</view>
+			<image class="qccode" src="../images/xty13.png" />
+		</view>
+		<image class="fanqie_close" bindtap="closeTap" src="../images/xty10.png" />
+
+		<view class="fanqie_share">
+			<button class="share_area" open-type="share">
+				<image class="share_img" src="../images/xty12.png"/><!--好友分享-->
+				<text class="share_text">好友分享</text>
+			</button>
+			<view class="share_area">
+				<image class="share_img" src="../images/xty13.png"/><!--朋友圈-->
+				<text class="share_text">朋友圈</text>
+			</view>
+		</view>
+	</view>
+
+</view>
+
+
+
