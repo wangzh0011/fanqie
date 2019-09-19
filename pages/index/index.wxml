@@ -26,7 +26,7 @@
     <view class="person_item">
       <view class="item_text">
         <text>我的番茄币</text>
-        <image src="../images/xty19.png" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px;"></image>
+        <image bindtap="coinTap" src="../images/xty19.png" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px;"></image>
       </view>
       <view class="item_num">20</view>
     </view>
@@ -58,39 +58,18 @@
 
 
 	<!--健康番茄遮罩层-->
-	<view wx:if="{{showFanqie}}" class="mask">
+	<view wx:if="{{showMask}}" class="mask">
 		<view class="fanqie">
-			<view class="image">
-				<image class="style1" src="../images/xty14.png" />
-				<image class="style2" src="../images/xty9.png" />
-				<!-- <view >要么瘦</view>
-				<view >要么死</view> -->
-				<image class="text" src="../images/xty15.png"/>
-			</view>
-			<view class="text">
-				<view style="font-size: 30rpx">众人皆胖 我独瘦</view>
-				<view >我将参与健康番茄</view>
-				<view >全民减脂计划</view>
-				<view >用我的科学减脂甩掉肉肉</view>
-				<view >再见了胖友们</view>
-			</view>
-			<view class="text_bottom">
-				<text >健康番茄</text>
-			</view>
-			<image class="qccode" src="../images/xty13.png" />
+
+      <view class="title">番茄币说明</view>
+      
+      <view class="content">
+          <text  space='nbsp'>今天的天气很好</text>
+      </view>
+        
 		</view>
 		<image class="fanqie_close" bindtap="closeTap" src="../images/xty10.png" />
 
-		<view class="fanqie_share">
-			<button class="share_area" open-type="share">
-				<image class="share_img" src="../images/xty12.png"/><!--好友分享-->
-				<text class="share_text">好友分享</text>
-			</button>
-			<view class="share_area">
-				<image class="share_img" src="../images/xty13.png"/><!--朋友圈-->
-				<text class="share_text">朋友圈</text>
-			</view>
-		</view>
 	</view>
 
 </view>

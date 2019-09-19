@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showMask: false
   },
 
   /**
@@ -19,6 +19,24 @@ Page({
       windowWidth: app.systemInfo.windowWidth,
       windowHeight: app.systemInfo.windowHeight,
       atbs_pic_style: app.systemInfo.windowHeight / 24,
+    })
+  },
+
+  /**
+   * 点击问号弹出遮罩层
+   */
+  coinTap: function () {
+    this.setData({
+      showMask: true
+    })
+  },
+
+  /**
+   * 关闭按钮
+   */
+  closeTap: function () {
+    this.setData({
+      showMask: false
     })
   },
 
