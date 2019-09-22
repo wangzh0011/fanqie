@@ -41,6 +41,22 @@ Page({
   },
 
   /**
+   * 跳转到健康饮食计划小程序
+   */
+  navigateToFoodsTap: function () {
+    wx.navigateToMiniProgram({
+      appId: 'wx8e9d3584b599f6fb',
+      path: 'pages/index/index',
+      extraData: {
+      },
+      envVersion: 'trial',/*develop	开发版	trial	体验版	release 正式版*/
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {

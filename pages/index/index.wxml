@@ -51,7 +51,7 @@
     </button>
   </view>
 
-  <button class="share" loading="{{loading}}" disabled="{{disabled}}">
+  <button class="share" bindtap="navigateToFoodsTap" loading="{{loading}}" disabled="{{disabled}}">
     <image src="../images/xty16.png" style="height: {{atbs_pic_style*3}}px; width: {{atbs_pic_style*3}}px"/>
   </button>
 
