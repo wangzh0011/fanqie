@@ -1,6 +1,35 @@
 //app.js
 App({
+
+ /**请求后台url */
+ data: {
+  uploadUrl:
+    "http://127.0.0.1:8080/upload/",
+    // "http://120.24.5.8:8080/upload/",
+  server:
+    "http://127.0.0.1:8080/eatingplan/"  
+    // "http://120.24.5.8:8080/eatingplan/"  
+  },
+
   onLaunch: function () {
+
+    //获取配置信息
+    wx.request({
+      url: this.data.server + 'getParameters',
+      data: {},
+      header: {'content-type':'application/json'},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result)=>{
+        console.log(result.data)
+        wx.setStorageSync("systemConf",result.data)
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+
+
     var that = this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -53,6 +82,10 @@ App({
   systemInfo: {
     windowWidth: null,
     windowHeight: null
+  },
+
+  foodsInfo: {
+    appid: 'wx8e9d3584b599f6fb'
   }
 
 })

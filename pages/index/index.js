@@ -8,18 +8,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showMask: false
+    showMask: false,
+    coinTotal: 0,
+    hasPayNum: 0,
+    notPayNum: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     this.setData({
       windowWidth: app.systemInfo.windowWidth,
       windowHeight: app.systemInfo.windowHeight,
       atbs_pic_style: app.systemInfo.windowHeight / 24,
     })
+
+    /**
+     * 获取分享信息
+     */
+    wx.request({
+      url: app.data.server + 'getShareInfo',
+      data: {
+        shareuid: 1
+      },
+      header: {'content-type':'application/json'},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result)=>{
+        console.log(result.data)
+        var coin = wx.getStorageSync("systemConf").coin;//每分享一个人获得的金币数
+        var coinDesc = wx.getStorageSync("systemConf").coinContext;
+        var shareTotalNum = result.data.shareInfo.shareTotalNum;//分享总人数
+        var hasPayNum = result.data.shareInfo.hasPayNum;//已支付人数
+        var notPayNum = result.data.shareInfo.notPayNum;//未支付人数
+        that.setData({
+          coinTotal: coin * shareTotalNum,
+          coinDesc: coinDesc,
+          hasPayNum: hasPayNum,
+          notPayNum: notPayNum
+        })
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+
+
   },
 
   /**
@@ -45,7 +81,7 @@ Page({
    */
   navigateToFoodsTap: function () {
     wx.navigateToMiniProgram({
-      appId: 'wx8e9d3584b599f6fb',
+      appId: app.foodsInfo.appid,
       path: 'pages/index/index',
       extraData: {
       },

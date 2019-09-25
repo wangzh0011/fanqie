@@ -11,11 +11,11 @@
     <view class="person">
       <view class="person_item">
         <view class="item_text">邀请人数</view>
-        <view class="item_num">5</view>
+        <view class="item_num">{{hasPayNum}}</view>
       </view>
       <view class="person_item">
         <view class="item_text">观望人数</view>
-        <view class="item_num">100</view>
+        <view class="item_num">{{notPayNum}}</view>
       </view>
     </view>
 
@@ -28,7 +28,7 @@
         <text>我的番茄币</text>
         <image bindtap="coinTap" src="../images/xty19.png" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px;"></image>
       </view>
-      <view class="item_num">20</view>
+      <view class="item_num">{{coinTotal}}</view>
     </view>
 
     <view class="fanqieCoin">
@@ -64,7 +64,7 @@
       <view class="title">番茄币说明</view>
       
       <view class="content">
-          <text  space='nbsp'>今天的天气很好</text>
+          <text  space='nbsp'>{{coinDesc}}</text>
       </view>
         
 		</view>
