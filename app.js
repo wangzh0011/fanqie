@@ -85,7 +85,7 @@ App({
   },
 
   foodsInfo: {
-    appid: 'wx8e9d3584b599f6fb'
+    appid: 'wxf818611b94a0c6fe'
   }
 
 })
