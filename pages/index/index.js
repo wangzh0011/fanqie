@@ -25,13 +25,54 @@ Page({
       atbs_pic_style: app.systemInfo.windowHeight / 24,
     })
 
-    /**
-     * 获取分享信息
-     */
+    var uid = wx.getStorageSync("wxData").id;
+    console.log("uid:" + uid)
+    //注册用户
+    if(uid == null || uid == undefined){
+        console.log("开始注册用户信息")
+        this.registerUser(options.shareuid);
+    }
+
+    var id = options.shareuid ;
+    if (id == undefined || id == '') {//直接从小程序进入
+      this.getShareInfo(wx.getStorageSync("wxdata").jkId)
+    } else { //从健康计划小程序跳转进入
+      this.getShareInfo(id)
+    }
+
+  },
+
+  /** 
+   * 注册用户
+  */
+  registerUser: function (id) {
+    wx.request({
+      url: app.data.server + 'register',
+      data: {
+          openid: wx.getStorageSync("wxData").openid,
+          type: 'FQ',
+          jkId: id == undefined ? '' : id //从健康计划传入的useID
+      },
+      header: {'content-type':'application/json'},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result)=>{
+          
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+  });
+  },
+
+  /**
+   * 获取分享信息
+   */
+  getShareInfo: function (id) {
     wx.request({
       url: app.data.server + 'getShareInfo',
       data: {
-        shareuid: 1
+        shareuid: id //自己的id  jkid
       },
       header: {'content-type':'application/json'},
       method: 'GET',
@@ -54,8 +95,6 @@ Page({
       fail: ()=>{},
       complete: ()=>{}
     });
-
-
   },
 
   /**
@@ -82,7 +121,7 @@ Page({
   navigateToFoodsTap: function () {
     wx.navigateToMiniProgram({
       appId: app.foodsInfo.appid,
-      path: 'pages/index/index',
+      path: 'pages/index/index?fqId=' + wx.getStorageSync("wxData").id,
       extraData: {
       },
       envVersion: 'trial',/*develop	开发版	trial	体验版	release 正式版*/
