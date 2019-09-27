@@ -25,21 +25,54 @@ Page({
       atbs_pic_style: app.systemInfo.windowHeight / 24,
     })
 
-    var uid = wx.getStorageSync("wxData").id;
+    var userInfo = wx.getStorageSync("wxData");
+    var uid = userInfo.id;
     console.log("uid:" + uid)
     //注册用户
     if(uid == null || uid == undefined){
         console.log("开始注册用户信息")
-        this.registerUser(options.shareuid);
+        this.registerUser(options.shareuid); //jkId
     }
 
     var id = options.shareuid ;
     if (id == undefined || id == '') {//直接从小程序进入
-      this.getShareInfo(wx.getStorageSync("wxdata").jkId)
+      this.getShareInfo(userInfo.jkId)
     } else { //从健康计划小程序跳转进入
       this.getShareInfo(id)
     }
 
+    //更新用户
+    if (uid != null && uid != undefined) {
+      if (userInfo.fqId == null || userInfo.fqId == undefined) {
+          this.updateUser(userInfo.id,userInfo.id,userInfo.jkId)
+      }
+  }
+
+  },
+
+/**
+ * 更新用户
+ * @param {*} id 
+ * @param {*} fqId 
+ */
+updateUser: function (id,fqId,jkId) {
+    wx.request({
+      url: app.data.server + 'updateUser',
+      data: {
+          id: id,
+          fqId: fqId,
+          jkId: jkId
+      },
+      header: {'content-type':'application/json'},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result)=>{
+          
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
   },
 
   /** 
@@ -51,7 +84,7 @@ Page({
       data: {
           openid: wx.getStorageSync("wxData").openid,
           type: 'FQ',
-          jkId: id == undefined ? '' : id //从健康计划传入的useID
+          jkId: id == undefined ? 0 : id //从健康计划传入的useID
       },
       header: {'content-type':'application/json'},
       method: 'GET',
