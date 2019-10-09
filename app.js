@@ -4,11 +4,11 @@ App({
  /**请求后台url */
  data: {
   uploadUrl:
-    "http://127.0.0.1:8080/upload/",
-    // "http://120.24.5.8:8080/upload/",
+    // "http://127.0.0.1:8080/upload/",
+    "https://fangqie.top/upload/",
   server:
-    "http://127.0.0.1:8080/eatingplan/"  
-    // "http://120.24.5.8:8080/eatingplan/"  
+    // "http://127.0.0.1:8080/eatingplan/"  
+    "https://fangqie.top/eatingplan/"  
   },
 
   onLaunch: function () {
