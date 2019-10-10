@@ -20,9 +20,13 @@ Page({
   onLoad: function (options) {
     var that = this;
     var id = options.shareuid ; //id 和 jkId 是同一个
+    console.log(id)
     if (id == undefined || id == '' || id == "null") {
-      id = 0
+      wx.setStorageSync("id",0)
+    } else {
+      wx.setStorageSync("id",id)
     }
+      
     this.setData({
       windowWidth: app.systemInfo.windowWidth,
       windowHeight: app.systemInfo.windowHeight,
@@ -55,23 +59,26 @@ Page({
               //注册用户
               if(uid == 'null' || uid == undefined){
                   console.log("开始注册用户信息 , id = " + id)
-                  
-                  this.registerUser(id); //jkId
+                  if (id == undefined || id == '' || id == "null") {
+                    this.registerUser(0); //jkId
+                  }else {
+                    this.registerUser(id); //jkId
+                  }
               } else {
-                if (id == 0) {//直接从小程序进入
+                if (id == undefined || id == '' || id == "null") {//直接从小程序进入
                   console.log("jkid = " + userInfo.jkId)
                   this.getShareInfo(userInfo.jkId)
                 } else { //从健康计划小程序跳转进入
                   this.getShareInfo(id)
+                  //更新用户
+                  if (userInfo.id != null && userInfo.id != undefined) {
+                    
+                    this.updateUser(userInfo.id,userInfo.id,id)
+                  }
                 } 
               }
               console.log("index.js 小程序跳转uid " + id)
           
-              //更新用户
-              if (userInfo.id != null && userInfo.id != undefined) {
-                
-                this.updateUser(userInfo.id,userInfo.id,id)
-              }
             // }
             // 由于 login 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
@@ -221,7 +228,15 @@ updateUser: function (id,fqId,jkId) {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var id = wx.getStorageSync("id")
+    console.log("onShow ==> id " + id)
+    var userInfo = wx.getStorageSync("wxData")
+    if (id == undefined || id == '' || id == "null") {//直接从小程序进入
+      console.log("jkid = " + userInfo.jkId)
+      this.getShareInfo(userInfo.jkId)
+    } else { //从健康计划小程序跳转进入
+      this.getShareInfo(id)
+    } 
   },
 
   /**
@@ -242,7 +257,7 @@ updateUser: function (id,fqId,jkId) {
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onShow()
   },
 
   /**
