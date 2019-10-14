@@ -4,34 +4,17 @@ App({
  /**请求后台url */
  data: {
   uploadUrl:
-    // "http://127.0.0.1:8080/upload/",
-    "https://fangqie.top/upload/",
+    "http://127.0.0.1:8080/upload/",
+    // "https://fangqie.top/upload/",
   server:
-    // "http://127.0.0.1:8080/eatingplan/"  
-    "https://fangqie.top/eatingplan/"  
+    "http://127.0.0.1:8080/eatingplan/"  
+    // "https://fangqie.top/eatingplan/"  
   },
 
   onLaunch: function (e) {
 
     console.log("小程序跳转uid ==> " )
     console.log(e.referrerInfo.extraData)
-
-    //获取配置信息
-    wx.request({
-      url: this.data.server + 'getParameters',
-      data: {},
-      header: {'content-type':'application/json'},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: (result)=>{
-        console.log(result.data)
-        wx.setStorageSync("systemConf",result.data)
-      },
-      fail: ()=>{},
-      complete: ()=>{}
-    });
-
 
     var that = this;
     // 展示本地存储能力

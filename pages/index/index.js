@@ -155,6 +155,7 @@ updateUser: function (id,fqId,jkId) {
    * 获取分享信息
    */
   getShareInfo: function (id) {
+    var that = this;
     wx.request({
       url: app.data.server + 'getShareInfo',
       data: {
@@ -165,18 +166,34 @@ updateUser: function (id,fqId,jkId) {
       dataType: 'json',
       responseType: 'text',
       success: (result)=>{
-        console.log(result.data)
-        var coin = wx.getStorageSync("systemConf").coin;//每分享一个人获得的金币数
-        var coinDesc = wx.getStorageSync("systemConf").coinContext;
+        var coin = null;
+        var coinDesc = null;
         var shareTotalNum = result.data.shareInfo.shareTotalNum;//分享总人数
         var hasPayNum = result.data.shareInfo.hasPayNum;//已支付人数
         var notPayNum = result.data.shareInfo.notPayNum;//未支付人数
-        this.setData({
-          coinTotal: coin * shareTotalNum,
-          coinDesc: coinDesc,
-          hasPayNum: hasPayNum,
-          notPayNum: notPayNum
-        })
+        //获取配置信息
+        wx.request({
+          url: app.data.server + 'getParameters',
+          data: {},
+          header: {'content-type':'application/json'},
+          method: 'GET',
+          dataType: 'json',
+          responseType: 'text',
+          success: (result)=>{
+            console.log(result.data)
+            coin = result.data.coin;//每分享一个人获得的金币数
+            coinDesc = result.data.coinContext;
+            that.setData({
+              coinTotal: coin * shareTotalNum,
+              coinDesc: coinDesc,
+              hasPayNum: hasPayNum,
+              notPayNum: notPayNum
+            })
+          },
+          fail: ()=>{},
+          complete: ()=>{}
+        });
+        
       },
       fail: ()=>{},
       complete: ()=>{}
@@ -257,6 +274,7 @@ updateUser: function (id,fqId,jkId) {
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
     this.onShow()
   },
 
