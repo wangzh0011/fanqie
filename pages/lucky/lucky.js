@@ -11,6 +11,7 @@ var intime = 50;
 Page({
   data: {
     color: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+    showChecked: [false,false,false,false,false,false,false],
     //9张奖品图片
     images: ['/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png'],
     btnconfirm: '/pages/images/dianjichoujiang.png',
@@ -19,7 +20,7 @@ Page({
   },
 
   onLoad:function(){
-    this.loadAnimation();
+    // this.loadAnimation();
   },
 
   input:function(e){
@@ -55,18 +56,18 @@ Page({
     //清空计时器
     clearInterval(interval);
     var index = 0;
-    console.log(e.data.color[0]);
+    console.log(e.data.showChecked[0]);
     //循环设置每一项的透明度
     interval = setInterval(function () {
       if (index > 7) {
         index = 0;
-        e.data.color[7] = 0.5
+        e.data.showChecked[7] = false
       } else if (index != 0) {
-        e.data.color[index - 1] = 0.5
+        e.data.showChecked[index - 1] = false
       }
-      e.data.color[index] = 1
+      e.data.showChecked[index] = true
       e.setData({
-        color: e.data.color,
+        showChecked: e.data.showChecked,
       })
       index++;
     }, intime);
@@ -93,9 +94,9 @@ Page({
     clearInterval(interval);
     //初始化当前位置
     var current = -1;
-    var color = e.data.color;
-    for (var i = 0; i < color.length; i++) {
-      if (color[i] == 1) {
+    var showChecked = e.data.showChecked;
+    for (var i = 0; i < showChecked.length; i++) {
+      if (showChecked[i] == 1) {
         current = i;
       }
     }
@@ -115,19 +116,19 @@ Page({
   stopLuck: function (which, index,time,splittime){
     var e = this;
     //值越大出现中奖结果后减速时间越长
-    var color = e.data.color;
+    var showChecked = e.data.showChecked;
     setTimeout(function () {
       //重置前一个位置
       if (index > 7) {
         index = 0;
-        color[7] = 0.5
+        showChecked[7] = false
       } else if (index != 0) {
-        color[index - 1] = 0.5
+        showChecked[index - 1] = false
       }
       //当前位置为选中状态
-      color[index] = 1
+      showChecked[index] = true
       e.setData({
-        color: color,
+        showChecked: showChecked,
       })
           //如果旋转时间过短或者当前位置不等于中奖位置则递归执行
           //直到旋转至中奖位置
@@ -154,7 +155,7 @@ Page({
                     btnconfirm: '/pages/images/dianjichoujiang.png',
                     clickLuck: 'clickLuck',
                   })
-                  e.loadAnimation();
+                  // e.loadAnimation();
                 }
               }
             })
@@ -171,7 +172,7 @@ Page({
                     btnconfirm: '/pages/images/dianjichoujiang.png',
                     clickLuck: 'clickLuck',
                   })
-                  e.loadAnimation();
+                  // e.loadAnimation();
                 }
               }
             })
@@ -179,7 +180,6 @@ Page({
           }, 1000);
         }
     }, time);
-    console.log(time);
   },
   //进入页面时缓慢切换
  loadAnimation:function (){

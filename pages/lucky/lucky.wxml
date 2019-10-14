@@ -1,23 +1,33 @@
 <!--index.wxml-->
-<view class="container">
-  停止位置:<input value='{{luckPosition}}' style="width:100%;text-align:center" bindinput='input' type='number'></input>
+<view>
+  <image class="background_img" src="../images/lucky.png"/>
+  <view wx:if="{{showChecked[0] == true}}" style="position: absolute;top:44%;left: 20%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+  <view wx:if="{{showChecked[1] == true}}" style="position: absolute;top:44%;left: 41.5%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+  <view wx:if="{{showChecked[2] == true}}" style="position: absolute;top:44%;left: 63%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+  <view wx:if="{{showChecked[7] == true}}" style="position: absolute;top:56%;left: 20%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+  <view style="position: absolute;top:56%;width:100%;text-align:center" ><text style="height:0px;width:16%;padding-bottom:10%;background-color:red" bindtap='{{clickLuck}}'>开始抽奖</text></view>
+  <view wx:if="{{showChecked[3] == true}}" style="position: absolute;top:56%;left: 63%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+  <view wx:if="{{showChecked[6] == true}}" style="position: absolute;top:67%;left: 20%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+  <view wx:if="{{showChecked[5] == true}}" style="position: absolute;top:67%;left: 41.5%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+  <view wx:if="{{showChecked[4] == true}}" style="position: absolute;top:67%;left: 63%;height:0px;width:16%;padding-bottom:16%;background-color:red;opacity:0.5"></view>
+    <!-- 停止位置:<input value='{{luckPosition}}' style="width:100%;text-align:center" bindinput='input' type='number'></input>
   <view class='frame_view'>
-<view class='frame_row'>
-<image class='frame_item' style='opacity:{{color[0]}}' src='{{images[0]}}'></image>
-<image class='frame_item' style='opacity:{{color[1]}}' src='{{images[1]}}'></image>
-<image class='frame_item' style='opacity:{{color[2]}}' src='{{images[2]}}'></image>
-</view>
+    <view class='frame_row'>
+      <image class='frame_item' style='opacity:{{color[0]}}' src='{{images[0]}}'></image>
+      <image class='frame_item' style='opacity:{{color[1]}}' src='{{images[1]}}'></image>
+      <image class='frame_item' style='opacity:{{color[2]}}' src='{{images[2]}}'></image>
+    </view>
 
-<view class='frame_row'>
-<image class='frame_item' style='opacity:{{color[7]}}' src='{{images[7]}}'></image>
-<image class='frame_item' src='{{btnconfirm}}' bindtap='{{clickLuck}}'></image>
-<image class='frame_item' style='opacity:{{color[3]}}' src='{{images[3]}}'></image>
-</view>
+    <view class='frame_row'>
+      <image class='frame_item' style='opacity:{{color[7]}}' src='{{images[7]}}'></image>
+      <image class='frame_item' src='{{btnconfirm}}' bindtap='{{clickLuck}}'></image>
+      <image class='frame_item' style='opacity:{{color[3]}}' src='{{images[3]}}'></image>
+    </view>
 
-<view class='frame_row'>
-<image class='frame_item' style='opacity:{{color[6]}}' src='{{images[6]}}'></image>
-<image class='frame_item' style='opacity:{{color[5]}}' src='{{images[5]}}'></image>
-<image class='frame_item' style='opacity:{{color[4]}}' src='{{images[4]}}'></image>
-</view>
-</view>
+    <view class='frame_row'>
+      <image class='frame_item' style='opacity:{{color[6]}}' src='{{images[6]}}'></image>
+      <image class='frame_item' style='opacity:{{color[5]}}' src='{{images[5]}}'></image>
+      <image class='frame_item' style='opacity:{{color[4]}}' src='{{images[4]}}'></image>
+    </view>
+  </view> -->
 </view>
