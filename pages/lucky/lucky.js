@@ -11,16 +11,27 @@ var intime = 50;
 Page({
   data: {
     color: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
-    showChecked: [false,false,false,false,false,false,false],
+    showChecked: [false,false,false,false,false,false,false,false],
+    // showChecked: [true,true,true,true,true,true,true,true],
     //9张奖品图片
     images: ['/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png', '/pages/images/item1.png', '/pages/images/item.png'],
     btnconfirm: '/pages/images/dianjichoujiang.png',
     clickLuck:'clickLuck',
-    luckPosition:0,
+    luckPosition:5,
   },
 
   onLoad:function(){
     // this.loadAnimation();
+    this.setData({
+      height: '10.5%',
+      width: '19%',
+      top_one: '44%',
+      top_two: '56%',
+      top_three: '67.5%',
+      left_one: '20%',
+      left_two: '40.6%',
+      left_three: '62%'
+    })
   },
 
   input:function(e){
@@ -142,7 +153,7 @@ Page({
         }else{
         //1秒后显示弹窗
           setTimeout(function () {
-        if (which == 1 || which == 3 || which == 5 || which == 7) {
+        if (which != 5 ) {
             //中奖
             wx.showModal({
               title: '提示',
