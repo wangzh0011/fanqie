@@ -168,7 +168,7 @@ updateUser: function (id,fqId,jkId) {
       success: (result)=>{
         var coin = null;
         var coinDesc = null;
-        var shareTotalNum = result.data.shareInfo.shareTotalNum;//分享总人数
+        var integral = result.data.shareInfo.integral;//积分
         var hasPayNum = result.data.shareInfo.hasPayNum;//已支付人数
         var notPayNum = result.data.shareInfo.notPayNum;//未支付人数
         //获取配置信息
@@ -184,7 +184,7 @@ updateUser: function (id,fqId,jkId) {
             coin = result.data.coin;//每分享一个人获得的金币数
             coinDesc = result.data.coinContext;
             that.setData({
-              coinTotal: coin * shareTotalNum,
+              coinTotal: integral,
               coinDesc: coinDesc,
               hasPayNum: hasPayNum,
               notPayNum: notPayNum

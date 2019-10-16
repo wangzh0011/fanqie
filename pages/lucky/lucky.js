@@ -214,5 +214,9 @@ Page({
     index++;
   }, 1000);
   // }  
+},
+
+onShareAppMessage: function () {
+  
 }
 })
