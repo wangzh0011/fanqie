@@ -24,13 +24,16 @@ Page({
     // this.loadAnimation();
     this.setData({
       height: '10.5%',
-      width: '19%',
-      top_one: '44%',
-      top_two: '56%',
+      width: '18.8%',
+      top_one: '43.8%',
+      top_two: '55.8%',
       top_three: '67.5%',
       left_one: '20%',
       left_two: '40.6%',
-      left_three: '62%'
+      left_three: '61.8%',
+      color: '#F8CF80',
+      opacity: '0.4',
+      border: '12rpx'
     })
   },
 
@@ -47,21 +50,9 @@ Page({
 
     var e = this;
 
-    //判断中奖位置格式
-    if (e.data.luckPosition == null || isNaN(e.data.luckPosition) || e.data.luckPosition>7){
-      wx.showModal({
-        title: '提示',
-        content: '请填写正确数值',
-        showCancel:false,
-      })
-      return;
-    }
-
-    
 
     //设置按钮不可点击
     e.setData({
-      btnconfirm:'/pages/pages/images/dianjichoujiangd.png',
       clickLuck:'',
     })
     //清空计时器
@@ -84,20 +75,32 @@ Page({
     }, intime);
 
     //模拟网络请求时间  设为两秒
-    var stoptime = 2000;
-    setTimeout(function () {
-      e.stop(e.data.luckPosition);
-    }, stoptime)
+    wx.request({
+      url: app.data.server + 'lucky',
+      data: {},
+      header: {'content-type':'application/json'},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result)=>{
+        console.log("抽奖结果 " + result.data)
+        var stoptime = 2000;
+        setTimeout(function () {
+          e.stop(result.data);
+        }, stoptime)
+      },
+      fail: ()=>{
+        var stoptime = 2000;
+        setTimeout(function () {
+          e.stop(e.data.luckPosition);
+        }, stoptime)
+      },
+      complete: ()=>{}
+    });
+    
 
   },
 
-  //也可以写成点击按钮停止抽奖
-  // clickStop:function(){
-  //   var stoptime = 2000;
-  //   setTimeout(function () {
-  //     e.stop(1);
-  //   }, stoptime)
-  // },
 
   stop: function (which){
     var e = this;
