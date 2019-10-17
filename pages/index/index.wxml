@@ -32,7 +32,7 @@
     </view>
 
     <view class="fanqieCoin">
-      <view class="fanqieCoin_text">兑换番茄币</view>
+      <view bindtap="luckyTap" class="fanqieCoin_text">兑换番茄币</view>
     </view>
 
   </view>

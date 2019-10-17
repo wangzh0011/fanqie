@@ -15,8 +15,13 @@
   <view wx:if="{{showChecked[6] == true}}" style="position: absolute;top:{{top_three}};left: {{left_one}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
   <view wx:if="{{showChecked[5] == true}}" style="position: absolute;top:{{top_three}};left: {{left_two}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
   <view wx:if="{{showChecked[4] == true}}" style="position: absolute;top:{{top_three}};left: {{left_three}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
-
-  <view style="position: absolute; top: 82.8%; left: 65%; font-size: 28rpx">我的积分：{{integral}}</view>
+  <view class="adver">{{adver}}</view>
+  <view wx:if="{{showText == true}}" class="text">{{luckyTimes}}次抽奖后必得<text style="color: red">50元红包</text></view>
+  <view class="integral" bindtap="integralTap"><text>我的积分：{{integral}}</text></view>
+  <view class="getintegral" bindtap="getintegralTap"><text >获得积分</text></view>
+  <view class="mygoods" bindtap="mygoodsTap"><text >我的奖品</text></view>
+  <view class="toJK" bindtap="toJKTap"><text >返回计划</text></view>
+  <image wx:if="{{showAgent}}" class="agent" src="../images/agent.png" bindtap="agentTap"/>
 
     <!-- 停止位置:<input value='{{luckPosition}}' style="width:100%;text-align:center" bindinput='input' type='number'></input>
   <view class='frame_view'>

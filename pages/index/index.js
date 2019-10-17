@@ -219,6 +219,20 @@ updateUser: function (id,fqId,jkId) {
   },
 
   /**
+   * 跳转抽奖界面
+   */
+  luckyTap: function () {
+    wx.navigateTo({
+      url: '/pages/lucky/lucky',
+      success: (result)=>{
+        
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+  },
+
+  /**
    * 跳转到健康饮食计划小程序
    */
   navigateToFoodsTap: function () {
