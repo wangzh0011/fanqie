@@ -58,35 +58,56 @@ Page({
     //清空计时器
     clearInterval(interval);
     var index = 0;
-    console.log(e.data.showChecked[0]);
-    //循环设置每一项的透明度
-    interval = setInterval(function () {
-      if (index > 7) {
-        index = 0;
-        e.data.showChecked[7] = false
-      } else if (index != 0) {
-        e.data.showChecked[index - 1] = false
-      }
-      e.data.showChecked[index] = true
-      e.setData({
-        showChecked: e.data.showChecked,
-      })
-      index++;
-    }, intime);
 
     //模拟网络请求时间  设为两秒
     wx.request({
       url: app.data.server + 'lucky',
-      data: {},
+      data: {
+        uid: wx.getStorageSync("wxData").jkId
+      },
       header: {'content-type':'application/json'},
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
       success: (result)=>{
-        console.log("抽奖结果 " + result.data)
+        console.log("抽奖结果 " + result.data.luckyInfo.luckyType)
+        //设置积分
+        e.setData({
+          integral: result.data.luckyInfo.integral
+        })
+        if (result.data.luckyInfo.luckyType == '-1') {
+          wx.showModal({
+            title: '提示',
+            content: result.data.luckyInfo.luckyMessage,
+            showCancel: false,
+            confirmText: '确定',
+            confirmColor: '#3CC51F',
+            success: ()=>{
+              e.setData({
+                clickLuck: 'clickLuck',
+              })
+            }
+          });
+          return;
+        }
+        //循环设置每一项的透明度
+        interval = setInterval(function () {
+          if (index > 7) {
+            index = 0;
+            e.data.showChecked[7] = false
+          } else if (index != 0) {
+            e.data.showChecked[index - 1] = false
+          }
+          e.data.showChecked[index] = true
+          e.setData({
+            showChecked: e.data.showChecked,
+          })
+          index++;
+        }, intime);
+        //设置停止跑马灯效果
         var stoptime = 2000;
         setTimeout(function () {
-          e.stop(result.data);
+          e.stop(result.data.luckyInfo.luckyType);
         }, stoptime)
       },
       fail: ()=>{
