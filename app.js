@@ -13,9 +13,6 @@ App({
 
   onLaunch: function (e) {
 
-    console.log("小程序跳转uid ==> " )
-    console.log(e.referrerInfo.extraData)
-
     var that = this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []

@@ -1,116 +1,63 @@
-/**index.wxss**/
-.background_img{
-  width:100%;
-  height:100%;
+/* pages/index/index.wxss */
+@import "/utils/tabs.wxss";
+@import "/utils/mask.wxss";
+
+.background-img{
+    width: 100%; 
+    height: 100%; 
+    position: absolute;
+}
+
+.area{
   position: absolute;
+  width: 90%;
+  height: 80%;
+  top:5%;
+  left: 5%;
+  border-radius: 12px;
+  background-color: #ffffff;
 }
 
-
-.frame_view{
-  bottom: 160rpx;
-  left: 60rpx;
-  right: 60rpx;
-  width:590rpx;
-  height:590rpx;
-  padding: 20rpx;
-  background: #792db3;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 30rpx;
-}
-.frame_row{
-  width:580rpx;
-  height:180rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-} 
-.frame_item{
-  width:180rpx;
-  height:180rpx;
-}
-
-.adver{
-  position: absolute;
-  top: 31.2%;
+.image{
   width: 100%;
-  text-align: center;
-  color: #EB5503
+  display: flex;
+  justify-content: center;
+  margin-top: 6%;
 }
 
-.text{
-  position: absolute;
-  top: 35.5%;
-  width: 100%;
-  text-align: center;
+.person{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  margin-top: 17%;
+}
+
+.person_item{
+  display: flex;
+  flex-flow: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.item_text{
   font-size: 28rpx;
+  color: #5a5f74;
 }
 
-.integral{
-  position: absolute;
-  width: 25%;
-  height: 4%;
-  background-color: #792db3;
-  top: 82%; 
-  right: 13.2%; 
-  font-size: 24rpx;
-  border-radius: 12rpx;
+.item_num{
+  font-size: 46rpx;
+  color: #2c2f3d;
+}
+
+.fanqieCoin{
   display: flex;
-  justify-content: center;
+  flex-flow: column;
   align-items: center;
+  margin-top: 9%;
 }
 
-.getintegral{
-  position: absolute;
-  width: 20%;
-  height: 4%;
-  background-color: #792db3;
-  top: 85%; 
-  left: 0; 
-  font-size: 24rpx;
-  border-radius: 0rpx 12rpx 12rpx 0rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.fanqieCoin_text{
+  font-size: 30rpx;
+  color: #41d524;
+  text-decoration: underline;
 }
-
-.mygoods{
-  position: absolute;
-  width: 20%;
-  height: 4%;
-  background-color: #792db3;
-  top: 93%; 
-  left: 0; 
-  font-size: 24rpx;
-  border-radius: 0rpx 12rpx 12rpx 0rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.toJK{
-  position: absolute;
-  width: 20%;
-  height: 4%;
-  background-color: #792db3;
-  top: 93%; 
-  right: 0; 
-  font-size: 24rpx;
-  border-radius: 12rpx 0rpx 0rpx 12rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.agent{
-  position: absolute;
-  width: 40.6%;
-  height: 6%;
-  top: 89%; 
-  left: 29.7%
-}
-

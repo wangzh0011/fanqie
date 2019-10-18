@@ -8,52 +8,28 @@
     left:0;
 }
 
-.fanqie{
-    position: absolute;
-    background-color: #ffffff;
-    width: 80%;
-    height: 65%;
-    border-radius: 12px;
-    top: 10%;
-    left: 10%;
-}
-
 .title{
-    display: flex;
-    justify-content: center;
-    font-size: 36rpx;
-    color: #454545;
-    margin-top: 3%;
+    font-weight: bold;
+    margin-top: 8%;
+    width: 100%;
+    text-align: center;
 }
 
-.content{
-    margin: 4%;
-    text-indent: 2em;
-    font-size: 30rpx;
-    color: #454545;
-}
-
-.fanqie_close{
+.confrim_text{
+    color: #3CC51F;
+    font-size: 28rpx;
     position: absolute;
-    top: 8%;
-    left: 83%;
-    width: 45px;
-    height: 45px;
+    bottom: 3%;
+    width: 100%;
+    text-align: center;
 }
 
-
-/*重置button样式*/
-button::after {
-    border: none
+.line{
+    position: absolute;
+    bottom: 15%;
+    height: 1px;
+    width: 100%;
+    background-color: #EAEAEB;
 }
 
-button{
-    background-color: transparent;/*透明*/
-    line-height: inherit
-}
-
-.button-hover{
-    color: transparent;
-    background-color: transparent
-}
 

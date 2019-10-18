@@ -1,63 +1,91 @@
-/* pages/index/index.wxss */
-@import "/utils/tabs.wxss";
+/**index.wxss**/
 @import "/utils/mask.wxss";
-
-.background-img{
-    width: 100%; 
-    height: 100%; 
-    position: absolute;
-}
-
-.area{
+@import "/utils/mask_mygoods.wxss";
+@import "/utils/mask_integral.wxss";
+@import "/utils/mask_getintegral.wxss";
+.background_img{
+  width:100%;
+  height:100%;
   position: absolute;
-  width: 90%;
-  height: 80%;
-  top:5%;
-  left: 5%;
-  border-radius: 12px;
-  background-color: #ffffff;
 }
 
-.image{
+.adver{
+  position: absolute;
+  top: 31.2%;
   width: 100%;
+  text-align: center;
+  color: #EB5503
+}
+
+.text{
+  position: absolute;
+  top: 35.5%;
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.integral{
+  position: absolute;
+  width: 25%;
+  height: 4%;
+  background-color: #FFDD7C;
+  top: 82%; 
+  right: 13.2%; 
+  font-size: 24rpx;
+  border-radius: 12rpx;
   display: flex;
   justify-content: center;
-  margin-top: 6%;
-}
-
-.person{
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  margin-top: 17%;
-}
-
-.person_item{
-  display: flex;
-  flex-flow: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
-.item_text{
-  font-size: 28rpx;
-  color: #5a5f74;
-}
-
-.item_num{
-  font-size: 46rpx;
-  color: #2c2f3d;
-}
-
-.fanqieCoin{
+.getintegral{
+  position: absolute;
+  width: 20%;
+  height: 4%;
+  background-color: #FFDD7C;
+  top: 85%; 
+  left: 0; 
+  font-size: 24rpx;
+  border-radius: 0rpx 12rpx 12rpx 0rpx;
   display: flex;
-  flex-flow: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 9%;
 }
 
-.fanqieCoin_text{
-  font-size: 30rpx;
-  color: #41d524;
-  text-decoration: underline;
+.mygoods{
+  position: absolute;
+  width: 20%;
+  height: 4%;
+  background-color: #FFDD7C;
+  top: 93%; 
+  left: 0; 
+  font-size: 24rpx;
+  border-radius: 0rpx 12rpx 12rpx 0rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.toJK{
+  position: absolute;
+  width: 20%;
+  height: 4%;
+  background-color: #FFDD7C;
+  top: 93%; 
+  right: 0; 
+  font-size: 24rpx;
+  border-radius: 12rpx 0rpx 0rpx 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agent{
+  position: absolute;
+  width: 40.6%;
+  height: 6%;
+  top: 89%; 
+  left: 29.7%
+}
+

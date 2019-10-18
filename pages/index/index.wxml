@@ -1,78 +1,76 @@
-<!--pages/index/index.wxml-->
+<!--index.wxml-->
 <view>
-	<image src="../images/ty11.png" class="background-img" >
-	</image>
-
-  <view class="area">
-    <view class="image">
-      <image src="../images/xty18.png" style="height: {{atbs_pic_style*4}}px; width: {{atbs_pic_style*4.3}}px"></image>
-    </view>
-
-    <view class="person">
-      <view class="person_item">
-        <view class="item_text">邀请人数</view>
-        <view class="item_num">{{hasPayNum}}</view>
-      </view>
-      <view class="person_item">
-        <view class="item_text">观望人数</view>
-        <view class="item_num">{{notPayNum}}</view>
-      </view>
-    </view>
-
-    <view class="image">
-      <image src="../images/xty20.png" style="height: {{atbs_pic_style*3.5}}px; width: {{atbs_pic_style*4.3}}px"></image>
-    </view>
-
-    <view class="person_item">
-      <view class="item_text">
-        <text>我的番茄币</text>
-        <image bindtap="coinTap" src="../images/xty19.png" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px;"></image>
-      </view>
-      <view class="item_num">{{coinTotal}}</view>
-    </view>
-
-    <view class="fanqieCoin">
-      <view bindtap="luckyTap" class="fanqieCoin_text">兑换番茄币</view>
-    </view>
-
+  <image class="background_img" src="../images/lucky.png"/>
+  <view wx:if="{{showChecked[0] == true}}" style="position: absolute;top:{{top_one}};left: {{left_one}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view wx:if="{{showChecked[1] == true}}" style="position: absolute;top:{{top_one}};left: {{left_two}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view wx:if="{{showChecked[2] == true}}" style="position: absolute;top:{{top_one}};left: {{left_three}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view wx:if="{{showChecked[7] == true}}" style="position: absolute;top:{{top_two}};left: {{left_one}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view style="position: absolute;top:{{top_two}};left: {{left_two}};height:{{height}};width:{{width}};display: flex;justify-content: center;align-items: center;"  bindtap='{{clickLuck}}'>
+    <text style="text-align:center">
+      <text style="font-size: 30rpx; color: #EB5503">开始抽奖\n</text>
+      <text style="font-size: 20rpx">-10积分</text>
+    </text>
   </view>
+  <view wx:if="{{showChecked[3] == true}}" style="position: absolute;top:{{top_two}};left: {{left_three}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view wx:if="{{showChecked[6] == true}}" style="position: absolute;top:{{top_three}};left: {{left_one}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view wx:if="{{showChecked[5] == true}}" style="position: absolute;top:{{top_three}};left: {{left_two}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view wx:if="{{showChecked[4] == true}}" style="position: absolute;top:{{top_three}};left: {{left_three}};height:{{height}};width:{{width}};background-color:{{color}};opacity:{{opacity}};border-radius:{{border}}"></view>
+  <view class="adver">{{adver}}</view>
+  <view wx:if="{{showText == true}}" class="text">{{luckyTimes}}次抽奖后必得<text style="color: red">50元红包</text></view>
+  <view class="integral" bindtap="integralTap"><text>我的积分：{{integral}}</text></view>
+  <view class="getintegral" bindtap="getintegralTap"><text >获得积分</text></view>
+  <view class="mygoods" bindtap="mygoodsTap"><text >我的奖品</text></view>
+  <view class="toJK" bindtap="toJKTap"><text >返回计划</text></view>
+  <image wx:if="{{showAgent}}" class="agent" src="../images/agent.png" bindtap="agentTap"/>
 
-	<!--底部状态栏-->
-  <view class="tabs" style="height: {{windowHeight/12}}px">
-    <button class="tabs_item" >
-      <image src="../images/ty13.png" bindtap="" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px"/>
-      <text class="tabs_text">赚番茄</text>
-    </button>
-    <view class="tabs_item">
-    </view>
-    <button class="tabs_item" open-type="contact">
-      <image src="../images/ty7.png" style="height: {{atbs_pic_style}}px; width: {{atbs_pic_style}}px"/>
-      <text class="tabs_text">客服</text>
-    </button>
-  </view>
+  <!-- 我的积分弹出层  -->
+  <view wx:if="{{showIntegral}}" class="mask">
+    <view class="details_integral">
 
-  <button class="share" bindtap="navigateToFoodsTap" loading="{{loading}}" disabled="{{disabled}}">
-    <image src="../images/xty16.png" style="height: {{atbs_pic_style*3}}px; width: {{atbs_pic_style*3}}px"/>
-  </button>
+      <view class="title">积分说明</view>
+       
+      <view class="content_integral"><text >{{integralText}}</text></view>
 
-
-
-	<!--健康番茄遮罩层-->
-	<view wx:if="{{showMask}}" class="mask">
-		<view class="fanqie">
-
-      <view class="title">番茄币说明</view>
-      
-      <view class="content">
-          <text  space='nbsp'>{{coinDesc}}</text>
-      </view>
+      <view class="line"></view>
+      <view bindtap="closeIntegral" class="confrim_text">确定</view>
         
-		</view>
-		<image class="fanqie_close" bindtap="closeTap" src="../images/xty10.png" />
+    </view>
+    <view bindtap="closeIntegral"></view>
+    <view class="close_mask"></view>
+  </view>
 
-	</view>
+  <!-- 获得积分弹出层 -->
+  <view wx:if="{{showGetintegral}}" class="mask" bindtap="closeGetintegral">
+    <view class="details_getintegral">
+
+      <view class="title">获得积分</view>
+      
+      <view class="content_getintegral"><text >{{getintegralText}}</text></view>
+
+      <view class="line"></view>
+      <view bindtap="closeGetintegral" class="confrim_text">去分享</view>
+    </view>
+  </view>
+
+  <!-- 我的奖品弹出层 -->
+  <view wx:if="{{showMygoods}}" class="mask">
+    <view class="details_mygoods">
+
+      <view class="title">我的奖品</view>
+      
+      <scroll-view class="goodslist" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" 
+        scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" 
+        bindscrolltoupper="" bindscrolltolower="" bindscroll="">
+        <view wx:for="{{advers}}" wx:for-item="item">
+          <view >{{item}}</view>
+        </view>
+      </scroll-view>
+
+      <view class="line_goods"></view>
+      <view bindtap="closeMygoods" class="confrim_text">去赚积分抽奖</view>
+        
+    </view>
+    <view class="closeMygoods" bindtap="closeMygoods"></view>
+  </view>
 
 </view>
-
-
-
