@@ -1,0 +1,14 @@
+<!--pages/agent/agent.wxml-->
+<image class="background_img" src="../images/agent_background.png"/>
+<!-- 数据分析图 -->
+
+
+<!-- 佣金 -->
+<image class="money" src="../images/xty23.png" />
+<view class="myMoney">{{money}}</view>
+<!-- 提现 -->
+<image class="getmoney" src="../images/xty22.png" />
+
+<view class="toJK" bindtap="toJKTap"><text >返回计划</text></view>
+
+<image class="toShare" bindtap="toShare" src="../images/xty21.png"/>

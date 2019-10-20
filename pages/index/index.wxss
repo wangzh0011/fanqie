@@ -2,7 +2,6 @@
 @import "/utils/mask.wxss";
 @import "/utils/mask_mygoods.wxss";
 @import "/utils/mask_integral.wxss";
-@import "/utils/mask_getintegral.wxss";
 .background_img{
   width:100%;
   height:100%;

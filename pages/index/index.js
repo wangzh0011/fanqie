@@ -53,7 +53,9 @@ Page({
     showText: false,
     showMygoods: false,
     showIntegral: false,
-    showGetintegral: false
+    showGetintegral: false,
+    showAgent: false,
+    showAgentMask: false
   },
 
 
@@ -163,6 +165,7 @@ Page({
     
 
     
+    
 
 
   },
@@ -182,6 +185,7 @@ Page({
         this.getShareInfo(id)
       } 
     }
+
   },
 
 /**
@@ -252,17 +256,22 @@ updateUser: function (id,fqId,jkId) {
       dataType: 'json',
       responseType: 'text',
       success: (result)=>{
+        var isAgent = result.data.shareInfo.isAgent;//是否是代理
+        var money = result.data.shareInfo.money;//佣金
+        var canAgent = result.data.shareInfo.canAgent;//代理权限
         var integral = result.data.shareInfo.integral;//积分
         var times = result.data.shareInfo.times;//抽奖次数
         var hasPayNum = result.data.shareInfo.hasPayNum;//已支付人数
         var notPayNum = result.data.shareInfo.notPayNum;//未支付人数
         wx.setStorageSync("hasPayNum",hasPayNum)
         wx.setStorageSync("notPayNum",notPayNum)
+        wx.setStorageSync("money",money)
         
         that.setData({
           showText: 10 - times < 1 ? false : true,
           luckyTimes: 10 - times,
           integral: integral,
+          showAgent: canAgent == 'Y' ? true : false
         })
         
       },
@@ -325,7 +334,9 @@ updateUser: function (id,fqId,jkId) {
       dataType: 'json',
       responseType: 'text',
       success: (result)=>{
-        
+        this.setData({
+          goodsList: result.data
+        })
       },
       fail: ()=>{},
       complete: ()=>{}
@@ -348,7 +359,66 @@ updateUser: function (id,fqId,jkId) {
    * 返回计划
    */
   toJKTap: function () {
-    this.navigateToFoodsTap()
+    app.navigateToFoodsTap()
+  },
+
+  /**
+   * 申请代理
+   */
+  agentTap: function() {
+    this.setData({
+      showAgentMask: true,
+      agentText: '恭喜您获得代理资格！\n为反馈做出贡献的用户 我们特推出代理机制 用户在获得100积分时即可申请成为代理。\n以下我们为您说明代理的福利：\n1.推广佣金：当成为代理时 用户通过您的链接每产生1笔购买 即可为你带来5元的推广佣金。\n2. 佣金体现：赚取的佣金可体现 我们将以现金的方式返现给您\n3.数据支持：成为代理之后 可实时监控每日产品情况 一目了然\n'
+    })
+  },
+
+  /**
+   * 关闭代理弹出层
+   */
+  closeAgent: function() {
+    this.setData({
+      showAgentMask: false,
+    })
+  },
+
+  /**
+   * 成为代理
+   */
+  beAgent: function() {
+    var that = this;
+    wx.request({
+      url: app.data.server + 'beAgent',
+      data: {
+        uid: wx.getStorageSync("wxData").jkId
+      },
+      header: {'content-type':'application/json'},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result)=>{
+        if (result.data == true) {
+          wx.navigateTo({
+            url: '/pages/agent/agent',
+            success: () => {
+              that.setData({
+                showAgentMask: false,
+              })
+            }
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '系统异常',
+            showCancel: false,
+            confirmText: '确定',
+            confirmColor: '#3CC51F',
+            
+          });
+        }
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
   },
 
 
@@ -396,10 +466,11 @@ updateUser: function (id,fqId,jkId) {
           return;
         }
         //设置积分和抽奖次数
+
         e.setData({
-          integral: result.data.luckyInfo.integral,
+          integral_temp: result.data.luckyInfo.integral,//积分  点击确认之后再显示剩余积分
           showText: 10 - result.data.luckyInfo.times < 1 ? false : true,
-          luckyTimes:  10 - result.data.luckyInfo.times
+          luckyTimes:  10 - result.data.luckyInfo.times//已抽奖次数
         })
         //循环设置每一项的透明度
         interval = setInterval(function () {
@@ -510,7 +581,7 @@ updateUser: function (id,fqId,jkId) {
                 if (res.confirm) {
                   //设置按钮可以点击
                   e.setData({
-                    btnconfirm: '/pages/images/dianjichoujiang.png',
+                    integral: e.data.integral_temp,
                     clickLuck: 'clickLuck',
                   })
                   // e.loadAnimation();
@@ -527,7 +598,7 @@ updateUser: function (id,fqId,jkId) {
                 if(res.confirm){
                   //设置按钮可以点击
                   e.setData({
-                    btnconfirm: '/pages/images/dianjichoujiang.png',
+                    integral: e.data.integral_temp,
                     clickLuck: 'clickLuck',
                   })
                   // e.loadAnimation();
@@ -568,23 +639,14 @@ updateUser: function (id,fqId,jkId) {
    * 跳转到健康饮食计划小程序
    */
   navigateToFoodsTap: function () {
-    wx.navigateToMiniProgram({
-      appId: app.foodsInfo.appid,
-      path: 'pages/index/index?fqId=' + wx.getStorageSync("wxData").id,
-      extraData: {
-      },
-      envVersion: 'trial',/*develop	开发版	trial	体验版	release 正式版*/
-      success(res) {
-        // 打开成功
-      }
-    })
+    app.navigateToFoodsTap();
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.onShow()
+    
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
 })

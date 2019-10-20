@@ -24,53 +24,65 @@
   <image wx:if="{{showAgent}}" class="agent" src="../images/agent.png" bindtap="agentTap"/>
 
   <!-- 我的积分弹出层  -->
-  <view wx:if="{{showIntegral}}" class="mask">
-    <view class="details_integral">
-
+    <view wx:if="{{showIntegral}}" class="mask" bindtap="closeIntegral">
+    </view>
+    <!-- 弹出层内容 -->
+    <view wx:if="{{showIntegral}}" class="details_integral">
       <view class="title">积分说明</view>
-       
       <view class="content_integral"><text >{{integralText}}</text></view>
-
       <view class="line"></view>
       <view bindtap="closeIntegral" class="confrim_text">确定</view>
-        
     </view>
-    <view bindtap="closeIntegral"></view>
-    <view class="close_mask"></view>
-  </view>
+  <!-- end -->
+   
 
   <!-- 获得积分弹出层 -->
-  <view wx:if="{{showGetintegral}}" class="mask" bindtap="closeGetintegral">
-    <view class="details_getintegral">
-
-      <view class="title">获得积分</view>
+    <view wx:if="{{showGetintegral}}" class="mask" bindtap="closeGetintegral">
       
-      <view class="content_getintegral"><text >{{getintegralText}}</text></view>
-
-      <view class="line"></view>
-      <view bindtap="closeGetintegral" class="confrim_text">去分享</view>
     </view>
-  </view>
+    <!-- 弹出层内容 -->
+    <view wx:if="{{showGetintegral}}" class="details_integral">
+      <view class="title">获得积分</view>
+      <view class="content_integral"><text >{{getintegralText}}</text></view>
+      <view class="line"></view>
+      <view bindtap="navigateToFoodsTap"  class="confrim_text">去分享</view>
+    </view>
+  <!-- end -->
 
   <!-- 我的奖品弹出层 -->
-  <view wx:if="{{showMygoods}}" class="mask">
-    <view class="details_mygoods">
-
+    <view wx:if="{{showMygoods}}" class="mask" bindtap="closeMygoods">
+    </view>
+    <!-- 弹出层内容 -->
+    <view wx:if="{{showMygoods}}" class="details_mygoods">
       <view class="title">我的奖品</view>
       
       <scroll-view class="goodslist" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" 
         scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" 
         bindscrolltoupper="" bindscrolltolower="" bindscroll="">
-        <view wx:for="{{advers}}" wx:for-item="item">
-          <view >{{item}}</view>
+        <view wx:for="{{goodsList}}" wx:for-item="item" wx:key="*.this">
+          <view >{{item.goods}}</view>
         </view>
       </scroll-view>
 
       <view class="line_goods"></view>
       <view bindtap="closeMygoods" class="confrim_text">去赚积分抽奖</view>
+    </view>
+  <!-- end -->
+
+  <!-- 申请代理弹出层 -->
+    <view wx:if="{{showAgentMask}}" class="mask" bindtap="closeAgent">
+    </view>
+    <!-- 弹出层内容 -->
+    <view wx:if="{{showAgentMask}}" class="details_mygoods">
+
+      <view class="title">代理说明</view>
+      
+      <view class="content_integral"><text >{{agentText}}</text></view>
+
+      <view class="line_goods"></view>
+      <view bindtap="beAgent" class="confrim_text">申请成为代理</view>
         
     </view>
-    <view class="closeMygoods" bindtap="closeMygoods"></view>
-  </view>
+  <!-- end   -->
 
 </view>

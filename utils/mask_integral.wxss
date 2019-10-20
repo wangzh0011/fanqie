@@ -6,8 +6,10 @@
     height: 36%;
     top: 32%;
     left: 15%;
+    z-index:9999;
 }
 
 .content_integral{
-    margin: 6%;
+    margin: 4% 8% 4% 8%;
+    font-size: 28rpx;
 }

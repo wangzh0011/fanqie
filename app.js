@@ -65,6 +65,22 @@ App({
 
   foodsInfo: {
     appid: 'wxf818611b94a0c6fe'
-  }
+  },
+
+  /**
+   * 跳转到健康饮食计划小程序
+   */
+  navigateToFoodsTap: function () {
+    wx.navigateToMiniProgram({
+      appId: this.foodsInfo.appid,
+      path: 'pages/index/index?fqId=' + wx.getStorageSync("wxData").id,
+      extraData: {
+      },
+      envVersion: 'trial',/*develop	开发版	trial	体验版	release 正式版*/
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
 
 })

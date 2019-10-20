@@ -1,0 +1,50 @@
+/* pages/agent/agent.wxss */
+.background_img{
+    width:100%;
+    height:100%;
+    position: absolute;
+}
+
+.money{
+    position: absolute;
+    top: 70%;
+    left: 13%;
+    height: 4%;
+    width: 45%;
+}
+
+.myMoney{
+    position: absolute;
+    top: 70%;
+    left: 42%;
+}
+
+.getmoney{
+    position: absolute;
+    top: 70%;
+    right: 13%;
+    height: 4%;
+    width: 25%;
+}
+
+.toJK{
+    position: absolute;
+    width: 20%;
+    height: 4%;
+    background-color: #FFDD7C;
+    top: 81%; 
+    right: 0; 
+    font-size: 24rpx;
+    border-radius: 12rpx 0rpx 0rpx 12rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .toShare{
+    position: absolute;
+    width: 40.6%;
+    height: 6%;
+    top: 85%; 
+    left: 29.7%
+  }
