@@ -174,7 +174,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var id = wx.getStorageSync("id")
+    var id = wx.getStorageSync("wxData").jkId
     console.log("onShow ==> Jkid " + id)
     var userInfo = wx.getStorageSync("wxData")
     if(id != '0') {
@@ -646,7 +646,17 @@ updateUser: function (id,fqId,jkId) {
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
     wx.showNavigationBarLoading() //在标题栏中显示加载
+    var id = wx.getStorageSync("id")
+    console.log("下拉刷新 ==> Jkid " + id)
+    var userInfo = wx.getStorageSync("wxData")
+    if (id == undefined || id == '' || id == "null") {//直接从小程序进入
+      console.log("下拉刷新 jkid = " + userInfo.jkId)
+      this.getShareInfo(userInfo.jkId)
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh()
+    } else { //从健康计划小程序跳转进入
+      this.getShareInfo(id)
+    } 
   },
 })
