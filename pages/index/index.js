@@ -101,90 +101,57 @@ Page({
       wx.setStorageSync("id",id)
     }
       
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wx.request({
-          url: app.data.server + 'login',
-          data: {
-            code: res.code,
-            type: 'FQ'
-          },
-          header: {'content-type':'application/json'},
-          method: 'GET',
-          dataType: 'json',
-          responseType: 'text',
-          success: (result)=>{
-            console.log("微信接口返回数据：")
-            console.log(result.data)
-            // this.userInfo.userInfo = result.data//将openId, sessionKey, unionId赋值给userInfo.userInfo
-            wx.setStorageSync("wxData",result.data);//已注册用户返回openID和id，未注册用户返回openID
-            var userInfo = result.data
-            var uid = userInfo.id;
-            console.log("抽奖小程序uid:" + uid)
-            //回调函数
-            // app.loginCallback = res => {
-              //注册用户
-              if(uid == 'null' || uid == undefined){
-                  console.log("开始注册用户信息 , id = " + id)
-                  if (id == undefined || id == '' || id == "null") {
-                    this.registerUser(0); //jkId
-                  }else {
-                    this.registerUser(id); //jkId
-                  }
-              } else {
-                if (id == undefined || id == '' || id == "null") {//直接从小程序进入
-                  console.log("抽奖小程序进入 jkid = " + userInfo.jkId)
-                  this.getShareInfo(userInfo.jkId)
-                } else { //从健康计划小程序跳转进入
-                  console.log("健康计划小程序进入 jkid = " + id)
-                  this.getShareInfo(id)
-                  //更新用户
-                  if (userInfo.id != null && userInfo.id != undefined) {
-                    console.log("更新用户")
-                    this.updateUser(userInfo.id,userInfo.id,id)
-                  }
-                } 
-              }
-              
-          
-            // }
-            // 由于 login 是网络请求，可能会在 Page.onLoad 之后才返回
-            // 所以此处加入 callback 以防止这种情况
-            // if (this.loginCallback) {
-            //   this.loginCallback(result.data)
-            // }
-          },
-          fail: ()=>{},
-          complete: ()=>{}
-        });
+   
+            
+    //回调函数
+    app.loginCallback = res => {
+
+      var userInfo = wx.getStorageSync("wxData");
+      var uid = userInfo.id;
+      console.log("抽奖小程序uid:" + uid)
+      //注册用户
+      if(uid == 'null' || uid == undefined){
+          console.log("开始注册用户信息 , id = " + id)
+          if (id == undefined || id == '' || id == "null") {
+            this.registerUser(0); //jkId
+          }else {
+            this.registerUser(id); //jkId
+          }
+      } else {
+        if (id == undefined || id == '' || id == "null") {//直接从小程序进入
+          console.log("抽奖小程序进入 jkid = " + userInfo.jkId)
+          this.getShareInfo(userInfo.jkId)
+        } else { //从健康计划小程序跳转进入
+          console.log("健康计划小程序进入 jkid = " + id)
+          this.getShareInfo(id)
+          //更新用户
+          if (userInfo.id != null && userInfo.id != undefined) {
+            console.log("更新用户")
+            this.updateUser(userInfo.id,userInfo.id,id)
+          }
+        } 
       }
-    })
-
-    
-
-    
-    
-
-
+      
+    }
+            
+         
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var id = wx.getStorageSync("wxData").jkId
-    console.log("onShow ==> Jkid " + id)
-    var userInfo = wx.getStorageSync("wxData")
-    if(id != '0') {
-      if (id == undefined || id == '' || id == "null") {//直接从小程序进入
-        console.log("onShow jkid = " + userInfo.jkId)
-        this.getShareInfo(userInfo.jkId)
-      } else { //从健康计划小程序跳转进入
-        this.getShareInfo(id)
-      } 
-    }
+    // var id = wx.getStorageSync("wxData").jkId
+    // console.log("onShow ==> Jkid " + id)
+    // var userInfo = wx.getStorageSync("wxData")
+    // if(id != '0') {
+    //   if (id == undefined || id == '' || id == "null") {//直接从小程序进入
+    //     console.log("onShow jkid = " + userInfo.jkId)
+    //     this.getShareInfo(userInfo.jkId)
+    //   } else { //从健康计划小程序跳转进入
+    //     this.getShareInfo(id)
+    //   } 
+    // }
 
   },
 
@@ -647,16 +614,12 @@ updateUser: function (id,fqId,jkId) {
    */
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    var id = wx.getStorageSync("id")
-    console.log("下拉刷新 ==> Jkid " + id)
     var userInfo = wx.getStorageSync("wxData")
-    if (id == undefined || id == '' || id == "null") {//直接从小程序进入
-      console.log("下拉刷新 jkid = " + userInfo.jkId)
-      this.getShareInfo(userInfo.jkId)
-      wx.hideNavigationBarLoading();
-      wx.stopPullDownRefresh()
-    } else { //从健康计划小程序跳转进入
-      this.getShareInfo(id)
-    } 
+    var id = userInfo.jkId
+    console.log("下拉刷新 jkid = " + userInfo.jkId)
+    this.getShareInfo(userInfo.jkId)
+    wx.hideNavigationBarLoading();
+    wx.stopPullDownRefresh()
+    
   },
 })
