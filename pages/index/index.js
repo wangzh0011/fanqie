@@ -302,7 +302,8 @@ updateUser: function (id,fqId,jkId) {
       responseType: 'text',
       success: (result)=>{
         this.setData({
-          goodsList: result.data
+          goodsList: result.data,
+          showBagde: false
         })
       },
       fail: ()=>{},
@@ -551,12 +552,17 @@ updateUser: function (id,fqId,jkId) {
                     integral: e.data.integral_temp,
                     clickLuck: 'clickLuck',
                   })
+                  //积分类奖品不提醒
+                  if (which != 1 || which != 6) {
+                    e.setData({
+                      showBagde: true
+                    })
+                  }
                   // e.loadAnimation();
                 }
               }
             })
           } else {
-            //中奖
             wx.showModal({
              title: '提示',
               content: '很遗憾未中奖',

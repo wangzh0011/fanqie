@@ -19,7 +19,11 @@
   <view wx:if="{{showText == true}}" class="text">{{luckyTimes}}次抽奖后必得<text style="color: red">50元红包</text></view>
   <view class="integral" bindtap="integralTap"><text>我的积分：{{integral}}</text></view>
   <view class="getintegral" bindtap="getintegralTap"><text >获得积分</text></view>
-  <view class="mygoods" bindtap="mygoodsTap"><text >我的奖品</text></view>
+  <view class="mygoods" bindtap="mygoodsTap">
+    <text >我的奖品</text>
+    <view wx:if="{{showBagde}}" class="weui-badge weui-badge_dot" style="font-size: 8px; margin-left: 5px;margin-right: 5px;"></view>
+  </view>
+  
   <view class="toJK" bindtap="toJKTap"><text >返回计划</text></view>
   <image wx:if="{{showAgent}}" class="agent" src="../images/agent.png" bindtap="agentTap"/>
 
@@ -55,6 +59,10 @@
     <!-- 弹出层内容 -->
     <view wx:if="{{showMygoods}}" class="details_mygoods">
       <view class="title">我的奖品</view>
+
+      <view class="weui-loadmore weui-loadmore_line" wx:if='{{goodsList.length == 0}}'>
+          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+      </view>
       
       <scroll-view class="goodslist" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" 
         scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" 
