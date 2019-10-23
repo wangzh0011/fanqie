@@ -12,3 +12,4 @@
 <view class="toJK" bindtap="toJKTap"><text >返回计划</text></view>
 
 <image class="toShare" bindtap="toShare" src="../images/xty21.png"/>
+<view class="text_bottom"><text >每笔订单成交可获得佣金5元</text></view>
