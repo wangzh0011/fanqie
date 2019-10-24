@@ -9,7 +9,7 @@
     position: absolute;
     top: 72%;
     left: 13%;
-    height: 3.5%;
+    height: 3.8%;
     width: 45%;
 }
 
@@ -23,7 +23,7 @@
     position: absolute;
     top: 72%;
     right: 13%;
-    height: 3.5%;
+    height: 3.8%;
     width: 25%;
 }
 
@@ -55,4 +55,61 @@
     width: 100%;
     text-align: center;
     font-size: 24rpx;
+  }
+
+  .notpay{
+    background-color: yellow;
+    width: 45%;
+    bottom: 0;
+    border-radius: 12rpx;
+    text-align: center;
+  }
+
+  .haspay{
+    background-color: green;
+    width: 45%;
+    left: 55%;
+    bottom: 0;
+    border-radius: 12rpx;
+    text-align: center;
+  }
+
+  .beforeyesterday{
+    position: absolute;
+    bottom: 36.3%;
+    left: 21.5%;
+    width: 8.5%;
+    height: 20%;
+  }
+
+  .date{
+    position: absolute;
+    font-size: 26rpx;
+    bottom: -17%;
+    width: 100%;
+    text-align: center;
+  }
+
+  .yesterday{
+    position: absolute;
+    bottom: 36.3%;
+    left: 46.5%;
+    width: 8.5%;
+    height: 20%;
+  }
+
+  .today{
+    position: absolute;
+    bottom: 36.3%;
+    left: 71.5%;
+    width: 8.5%;
+    height: 20%;
+  }
+
+  text{
+    font-size: 26rpx;
+  }
+
+  .data{
+    color: gray;
   }

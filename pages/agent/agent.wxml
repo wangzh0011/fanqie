@@ -1,7 +1,24 @@
 <!--pages/agent/agent.wxml-->
 <image class="background_img" src="../images/agent_background.png"/>
 <!-- 数据分析图 -->
-
+<!-- 前天 -->
+<view class="beforeyesterday">
+    <view class="notpay" style="position: absolute;height: {{beforeYesterdayNotPayPercentage}}"><text class="data">{{beforeYesterdayNotPay}}</text></view>
+    <view class="haspay" style="position: absolute;height: {{beforeYesterdayHasPayPercentage}}"><text class="data">{{beforeYesterdayHasPay}}</text></view>
+    <view class="date"><text style="color: gray">前天</text></view>
+</view>
+<!-- 昨天 -->
+<view class="yesterday">
+    <view class="notpay" style="position: absolute;height: {{yesterdayNotPayPercentage}}"><text class="data">{{yesterdayNotPay}}</text></view>
+    <view class="haspay" style="position: absolute;height: {{yesterdayHasPayPercentage}}"><text class="data">{{yesterdayHasPay}}</text></view>
+    <view class="date"><text style="color: gray">昨天</text></view>
+</view>
+<!-- 今天 -->
+<view class="today">
+    <view class="notpay" style="position: absolute;height: {{todayNotPayPercentage}}"><text class="data">{{todayNotPay}}</text></view>
+    <view class="haspay" style="position: absolute;height: {{todayHasPayPercentage}}"><text class="data">{{todayHasPay}}</text></view>
+    <view class="date"><text >今天</text></view>
+</view>
 
 <!-- 佣金 -->
 <image class="money" src="../images/xty23.png" />
